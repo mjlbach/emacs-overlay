@@ -1,5 +1,4 @@
-final: prev:
-let packages = (prev.callPackage ./default.nix { }).packages;
+let packages = (prev.callPackage ./default.nix { });
 in {
-  inherit (packages) emacsPgtkGcc;
+  inherit (packages) emacsPgtk;
 }
