@@ -30,13 +30,13 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        src = pkgs.callPackage ./default.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
+        src = pkgs.callPackage ./emacs.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
       in
       rec {
-        packages = src;
-        legacyPackages = packages;
-        defaultPackage = packages.emacsGccPgtk packages.emacsGcc;
-        overlay = ./overlay.nix;
+        packages = flake-utils.lib.flattenTree src;
+        overlay = final: prev: {
+          emacsGcc = packages.emacsGcc;
+        };
       }
     );
 }
