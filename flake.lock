@@ -1,0 +1,165 @@
+{
+  "nodes": {
+    "emacs-git": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1606083770,
+        "narHash": "sha256-BMi4b4kctf0e+scFDYPlK47HhhJX4EQYVClLC8D4Dmg=",
+        "owner": "emacs-mirror",
+        "repo": "emacs",
+        "rev": "edd949a3eb8907eed84eab30e170cc138a5b2d41",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emacs-mirror",
+        "repo": "emacs",
+        "type": "github"
+      }
+    },
+    "emacs-nativecomp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1606080196,
+        "narHash": "sha256-BxfPTtiwD+sH2+K3CB9+Z8/Z/f4X1E1ID6SRIeX7Smc=",
+        "owner": "emacs-mirror",
+        "repo": "emacs",
+        "rev": "033e96055cc172d8d84adc128aee7f7d9889bb00",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emacs-mirror",
+        "ref": "feature/native-comp",
+        "repo": "emacs",
+        "type": "github"
+      }
+    },
+    "emacs-pgtk": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1606038698,
+        "narHash": "sha256-zNk5JrwQMsS/tve+F8iPybRl3GYJPO0/hVuldRI7x7A=",
+        "owner": "masm11",
+        "repo": "emacs",
+        "rev": "3df4ca451d41a5f1036713277ef55ca9734c6fa7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "masm11",
+        "ref": "pgtk",
+        "repo": "emacs",
+        "type": "github"
+      }
+    },
+    "emacs-pgtk-nativecomp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1606097139,
+        "narHash": "sha256-qDmc1q4iC4+mtZ43GeJY0dZgEQ3j0dTbKA5texQIf+Y=",
+        "owner": "flatwhatson",
+        "repo": "emacs",
+        "rev": "8f53b6f47c94c6cbe733dd7438b730f6c6bb7727",
+        "type": "github"
+      },
+      "original": {
+        "owner": "flatwhatson",
+        "ref": "pgtk-nativecomp",
+        "repo": "emacs",
+        "type": "github"
+      }
+    },
+    "emacs-unstable": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1606083770,
+        "narHash": "sha256-BMi4b4kctf0e+scFDYPlK47HhhJX4EQYVClLC8D4Dmg=",
+        "owner": "emacs-mirror",
+        "repo": "emacs",
+        "rev": "edd949a3eb8907eed84eab30e170cc138a5b2d41",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emacs-mirror",
+        "repo": "emacs",
+        "type": "github"
+      }
+    },
+    "exwm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1594512000,
+        "narHash": "sha256-PHMHtTbKpKtFGGGtMh2SbKoK+8avh3CiDeW5jXP+TDM=",
+        "owner": "ch11ng",
+        "repo": "exwm",
+        "rev": "0368127976bda29d35eed788edfe74644ecd3845",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ch11ng",
+        "repo": "exwm",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1605370193,
+        "narHash": "sha256-YyMTf3URDL/otKdKgtoMChu4vfVL3vCMkRqpGifhUn0=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5021eac20303a61fafe17224c087f5519baed54d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1605744920,
+        "narHash": "sha256-FGg6wSlUv4A0Mue4snu2VRNZOoJVT2+vLkfJ2HGcFeQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "a322b32e9d74fb476944ff6cfb55833dc69cfaaa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "emacs-git": "emacs-git",
+        "emacs-nativecomp": "emacs-nativecomp",
+        "emacs-pgtk": "emacs-pgtk",
+        "emacs-pgtk-nativecomp": "emacs-pgtk-nativecomp",
+        "emacs-unstable": "emacs-unstable",
+        "exwm": "exwm",
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs",
+        "xelb": "xelb"
+      }
+    },
+    "xelb": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1595116800,
+        "narHash": "sha256-7Xr5UJyVxU8RatC8fo1x7WUpuY3qf/1izRMEMzR8dIM=",
+        "owner": "ch11ng",
+        "repo": "xelb",
+        "rev": "df102a5773b37cec154e795a17a8513144dde643",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ch11ng",
+        "repo": "xelb",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
