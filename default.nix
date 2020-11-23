@@ -111,81 +111,79 @@ let
 
 in
 {
-  packages = {
-    inherit emacsGit emacsUnstable;
+  inherit emacsGit emacsUnstable;
 
-    inherit emacsGcc;
+  inherit emacsGcc;
 
-    inherit emacsPgtk emacsPgtkGcc;
+  inherit emacsPgtk emacsPgtkGcc;
 
-    emacsGit-nox = (
-      (
-        emacsGit.override {
-          withX = false;
-          withGTK2 = false;
-          withGTK3 = false;
+  emacsGit-nox = (
+    (
+      emacsGit.override {
+        withX = false;
+        withGTK2 = false;
+        withGTK3 = false;
+      }
+    ).overrideAttrs (
+      oa: {
+        name = "${oa.name}-nox";
+      }
+    )
+  );
+
+  emacsUnstable-nox = (
+    (
+      emacsUnstable.override {
+        withX = false;
+        withGTK2 = false;
+        withGTK3 = false;
+      }
+    ).overrideAttrs (
+      oa: {
+        name = "${oa.name}-nox";
+      }
+    )
+  );
+
+  emacsWithPackagesFromUsePackage = import ./elisp.nix { pkgs = pkgs; };
+
+  emacsWithPackagesFromPackageRequires = import ./packreq.nix { pkgs = pkgs; };
+
+  emacsPackagesFor = emacs: (
+    (pkgs.emacsPackagesFor emacs).overrideScope' (
+      eself: esuper:
+        let
+          melpaStablePackages = esuper.melpaStablePackages.override {
+            archiveJson = ./repos/melpa/recipes-archive-melpa.json;
+          };
+
+          melpaPackages = esuper.melpaPackages.override {
+            archiveJson = ./repos/melpa/recipes-archive-melpa.json;
+          };
+
+          elpaPackages = esuper.elpaPackages.override {
+            generated = ./repos/elpa/elpa-generated.nix;
+          };
+
+          orgPackages = esuper.orgPackages.override {
+            generated = ./repos/org/org-generated.nix;
+          };
+
+          epkgs = esuper.override {
+            inherit melpaStablePackages melpaPackages elpaPackages orgPackages;
+          };
+
+        in
+        epkgs // {
+          xelb = mkExDrv eself "xelb" {
+            packageRequires = [ eself.cl-generic eself.emacs ];
+          };
+
+          exwm = mkExDrv eself "exwm" {
+            packageRequires = [ eself.xelb ];
+          };
         }
-      ).overrideAttrs (
-        oa: {
-          name = "${oa.name}-nox";
-        }
-      )
-    );
+    )
+  );
 
-    emacsUnstable-nox = (
-      (
-        emacsUnstable.override {
-          withX = false;
-          withGTK2 = false;
-          withGTK3 = false;
-        }
-      ).overrideAttrs (
-        oa: {
-          name = "${oa.name}-nox";
-        }
-      )
-    );
-
-    emacsWithPackagesFromUsePackage = import ./elisp.nix { pkgs = pkgs; };
-
-    emacsWithPackagesFromPackageRequires = import ./packreq.nix { pkgs = pkgs; };
-
-    emacsPackagesFor = emacs: (
-      (pkgs.emacsPackagesFor emacs).overrideScope' (
-        eself: esuper:
-          let
-            melpaStablePackages = esuper.melpaStablePackages.override {
-              archiveJson = ./repos/melpa/recipes-archive-melpa.json;
-            };
-
-            melpaPackages = esuper.melpaPackages.override {
-              archiveJson = ./repos/melpa/recipes-archive-melpa.json;
-            };
-
-            elpaPackages = esuper.elpaPackages.override {
-              generated = ./repos/elpa/elpa-generated.nix;
-            };
-
-            orgPackages = esuper.orgPackages.override {
-              generated = ./repos/org/org-generated.nix;
-            };
-
-            epkgs = esuper.override {
-              inherit melpaStablePackages melpaPackages elpaPackages orgPackages;
-            };
-
-          in
-          epkgs // {
-            xelb = mkExDrv eself "xelb" {
-              packageRequires = [ eself.cl-generic eself.emacs ];
-            };
-
-            exwm = mkExDrv eself "exwm" {
-              packageRequires = [ eself.xelb ];
-            };
-          }
-      )
-    );
-
-  };
 }
