@@ -21,7 +21,7 @@
   outputs = { self, flake-utils, exwm, xelb, emacs-git, emacs-unstable, emacs-pgtk, emacs-nativecomp, emacs-pgtk-nativecomp, nixpkgs }:
     (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = nixpkgs.legacyPackages.${system};
-      src = pkgs.callPackage ./default.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
+      src.packages = pkgs.callPackage ./default.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
     in rec {
       inherit (src) packages;
       legacyPackages = packages;
