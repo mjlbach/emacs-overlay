@@ -70,15 +70,16 @@
     "emacs-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1606083770,
-        "narHash": "sha256-BMi4b4kctf0e+scFDYPlK47HhhJX4EQYVClLC8D4Dmg=",
+        "lastModified": 1605970817,
+        "narHash": "sha256-FFtoCtc+S7bjEbMzlVvyH+UXhd43ioxUSTG8F0rr5Pg=",
         "owner": "emacs-mirror",
         "repo": "emacs",
-        "rev": "edd949a3eb8907eed84eab30e170cc138a5b2d41",
+        "rev": "3ceee398192e312faa3ea073365c49bcce9ef61b",
         "type": "github"
       },
       "original": {
         "owner": "emacs-mirror",
+        "ref": "emacs-27",
         "repo": "emacs",
         "type": "github"
       }

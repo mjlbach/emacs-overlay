@@ -6,9 +6,16 @@
   inputs.exwm = { url = "github:ch11ng/exwm"; flake = false; };
   inputs.xelb = { url = "github:ch11ng/xelb"; flake = false; };
   inputs.emacs-git = { url = "github:emacs-mirror/emacs"; flake = false; };
-  inputs.emacs-unstable = { url = "github:emacs-mirror/emacs"; flake = false; };
   inputs.emacs-pgtk = { url = "github:masm11/emacs/pgtk"; flake = false; };
   inputs.emacs-pgtk-nativecomp = { url = "github:flatwhatson/emacs/pgtk-nativecomp"; flake = false; };
+
+  inputs.emacs-unstable = {
+    type = "github";
+    owner = "emacs-mirror";
+    repo = "emacs";
+    ref = "emacs-27";
+    flake = false;
+  };
 
   inputs.emacs-nativecomp = {
     type = "github";
@@ -18,17 +25,18 @@
     flake = false;
   };
 
-  outputs = { self, flake-utils, exwm, xelb, emacs-git, emacs-unstable, emacs-pgtk, emacs-nativecomp, emacs-pgtk-nativecomp, nixpkgs }:
-    (flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-      src.packages = pkgs.callPackage ./default.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
-    in rec {
-      inherit (src) packages;
-      legacyPackages = packages;
-      defaultPackage = packages.emacsGccPgtk packages.emacsGcc;
-    }))
-    // {
-    overlay = final: prev:
-      import ./overlay.nix final prev;
-    };
+  outputs = { self, ... }@inputs:
+    with inputs;
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+        src = pkgs.callPackage ./default.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
+      in
+      rec {
+        packages = src;
+        legacyPackages = packages;
+        defaultPackage = packages.emacsGccPgtk packages.emacsGcc;
+        overlay = ./overlay.nix;
+      }
+    );
 }
