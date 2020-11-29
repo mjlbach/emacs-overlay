@@ -27,19 +27,19 @@
   };
 
   outputs = { self, ... }@inputs:
-    with inputs;
-    flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = nixpkgs.legacyPackages.${system};
-      in
-      rec {
-        packages = pkgs.callPackage ./emacs.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
-        legacyPackages = packages;
-        defaultPackage = packages.emacsGccPgtk;
-      }
-    ) // { overlay = final: prev:
-      let packages = (prev.callPackage ./default.nix { }).packages;
-      in {
-        inherit (packages) emacsGccPgtk;
-      }; 
-    };
+    inputs.flake-utils.lib.eachDefaultSystem
+      (system:
+        let 
+          pkgs = inputs.nixpkgs.legacyPackages.${system};
+          emacs-pkgs = with inputs; pkgs.callPackage ./emacs.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
+        in
+        {
+          packages = emacs-pkgs;
+          defaultPackage = emacs-pkgs.emacsPgtkGcc;
+          overlay = final: prev:
+            {
+              inherit (emacs-pkgs) emacsPgtkGcc emacsGcc;
+            };
+        }
+      );
 }
