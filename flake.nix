@@ -29,17 +29,22 @@
   outputs = { self, ... }@inputs:
     inputs.flake-utils.lib.eachDefaultSystem
       (system:
-        let 
+        let
           pkgs = inputs.nixpkgs.legacyPackages.${system};
           emacs-pkgs = with inputs; pkgs.callPackage ./emacs.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
         in
         {
           packages = emacs-pkgs;
           defaultPackage = emacs-pkgs.emacsPgtkGcc;
-          overlay = final: prev:
-            {
-              inherit (emacs-pkgs) emacsPgtkGcc emacsGcc;
-            };
         }
-      );
+      ) // {
+      overlay = final: prev:
+        let
+          pkgs = inputs.nixpkgs.legacyPackages.${prev.system};
+          emacs-pkgs = with inputs; pkgs.callPackage ./emacs.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
+        in
+        {
+          inherit (emacs-pkgs) emacsPgtkGcc emacsGcc;
+        };
+    };
 }
