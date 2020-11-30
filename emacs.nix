@@ -51,7 +51,7 @@ let
                 --replace '(emacs-repository-get-version)' '"${source.rev}"' \
                 --replace '(emacs-repository-get-branch)' '"master"'
               '';
-              postInstall = old.postInstall ++ pkgs.lib.optional pkgs.stdenv.isDarwin ''
+              postInstall = old.postInstall + pkgs.stdenv.lib.optionalString pkgs.stdenv.isDarwin ''
                 ln -snf $out/lib/emacs/28.0.50/native-lisp $out/Applications/Emacs.app/Contents/native-lisp
               '';
 
