@@ -3,11 +3,11 @@
     "emacs-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1607311128,
-        "narHash": "sha256-SxTVoy8Kq99WI0f3Uv3ZaycFFOPmfR0bRukK/B124UQ=",
+        "lastModified": 1607549083,
+        "narHash": "sha256-5iQymI8Es9fW178PZ1dOyEvtqWqiF8bomh1dpNzLV+w=",
         "owner": "emacs-mirror",
         "repo": "emacs",
-        "rev": "300c581370073fbaad025465edc39bcbfe5e7c81",
+        "rev": "1729883c988d8893ef3e1ed0d26f52e150cd1b8f",
         "type": "github"
       },
       "original": {
@@ -19,11 +19,11 @@
     "emacs-nativecomp": {
       "flake": false,
       "locked": {
-        "lastModified": 1607274447,
-        "narHash": "sha256-sCHXCFVIJnu7nKLu+pR1OiCzZEqm+GtJHaj8AIbnA34=",
+        "lastModified": 1607355781,
+        "narHash": "sha256-ysOH3vbNHLahVHkn0V4XR3XOryoauyeoRuq2gn61YpE=",
         "owner": "emacs-mirror",
         "repo": "emacs",
-        "rev": "715a1ca1744f9a5918376bf7662c81302f0b20c0",
+        "rev": "be907b0ba82c2a65e0468d50653cae8a7cf5f16b",
         "type": "github"
       },
       "original": {
@@ -53,11 +53,11 @@
     "emacs-pgtk-nativecomp": {
       "flake": false,
       "locked": {
-        "lastModified": 1607296704,
-        "narHash": "sha256-rDicB77na+Zk9fhR+TwCL6OJWXRjcbiusG5cMfZoOTU=",
+        "lastModified": 1607470227,
+        "narHash": "sha256-Dx/pvQdDVyHG8vek0UmNoQqkxQ2SvONW+YnwPO6e5hI=",
         "owner": "flatwhatson",
         "repo": "emacs",
-        "rev": "436b93370151dd06fd3340200828ce5a44486847",
+        "rev": "992c060a5ee465977cb5f31aa5cf2599ac895dcc",
         "type": "github"
       },
       "original": {
@@ -70,11 +70,11 @@
     "emacs-unstable": {
       "flake": false,
       "locked": {
-        "lastModified": 1607289493,
-        "narHash": "sha256-lMhov30KycjcPkhzuKuC6iMvQi7paTWDb7YoRPIYevc=",
+        "lastModified": 1607526393,
+        "narHash": "sha256-zojjXo/KR0ER83DsG91BazCokhenDmrzwarfcX55rBM=",
         "owner": "emacs-mirror",
         "repo": "emacs",
-        "rev": "3fe6cea6e0e1d75fae91037077adf8eb40c9b040",
+        "rev": "809b22d18d20e59a6320c62bbff29bd578f0b65a",
         "type": "github"
       },
       "original": {
@@ -131,19 +131,51 @@
         "type": "github"
       }
     },
+    "gitignore.nix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1594969032,
+        "narHash": "sha256-nbZfz02QoVe1yYK7EtCV7wMi4VdHzZEoPg20ZSDo9to=",
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "rev": "c4662e662462e7bf3c2a968483478a665d00e717",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "gitignore.nix",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1606984864,
-        "narHash": "sha256-yTz6tNbjOz7ezTw/r+M9CgYlfXczEtPlLnwkk2D0CUg=",
+        "lastModified": 1607327113,
+        "narHash": "sha256-QK/qV1AaLnGEu+KwiPX7vSxzU9lMB6zM+kIbvjJo54k=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "296793637b22bdb4d23b479879eba0a71c132a66",
+        "rev": "83cbad92d73216bb0d9187c56cce0b91f9121d5a",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "pre-commit-hooks.nix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1606990731,
+        "narHash": "sha256-deaiOGn//2Km5YIus5ktP7WbE7G0917G4Eju3DVEW1A=",
+        "owner": "cachix",
+        "repo": "pre-commit-hooks.nix",
+        "rev": "1b11ce0f8c65dd3d8e9520e23c100b76d09a858b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "cachix",
+        "repo": "pre-commit-hooks.nix",
         "type": "github"
       }
     },
@@ -157,7 +189,9 @@
         "exwm": "exwm",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
+        "gitignore.nix": "gitignore.nix",
         "nixpkgs": "nixpkgs",
+        "pre-commit-hooks.nix": "pre-commit-hooks.nix",
         "xelb": "xelb"
       }
     },

@@ -1,6 +1,9 @@
 {
   description = "Bleeding edge Emacs overlay";
 
+  inputs."pre-commit-hooks.nix" = { url = "github:cachix/pre-commit-hooks.nix"; flake = false; };
+  inputs."gitignore.nix" = { url = "github:hercules-ci/gitignore.nix"; flake = false; };
+
   inputs.flake-utils.url = "github:numtide/flake-utils";
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.flake-compat = { url = "github:edolstra/flake-compat"; flake = false; };
@@ -26,7 +29,7 @@
     flake = false;
   };
 
-  outputs = { self, ... }@inputs:
+  outputs = { ... }@inputs:
     inputs.flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -36,9 +39,10 @@
         {
           packages = emacs-pkgs;
           defaultPackage = emacs-pkgs.emacsPgtkGcc;
+          devShell = import ./shell.nix { inherit inputs pkgs; };
         }
       ) // {
-      overlay = final: prev:
+      overlay = _: prev:
         let
           pkgs = inputs.nixpkgs.legacyPackages.${prev.system};
           emacs-pkgs = with inputs; pkgs.callPackage ./emacs.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
