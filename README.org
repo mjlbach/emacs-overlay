@@ -1,4 +1,8 @@
 * Emacs overlay for Nixpkgs
+
+** Fork Notes
+This is my personal fork of the nix-community emacs-overlay, which includes bundling of nixpkgs and the use of github actions for all builds. To see the full documenation, go [[https://github.com/nix-community/emacs-overlay#readme][here]]. The main differences in this overlay, are it only builds emacsPgtkGcc for linux, and emacsGcc for macos. To get started, you can add the following to your nixos/home-manager config.
+
 ** Quickstart
 To get up and running quickly, add the following lines to your =/etc/nixos/configuration.nix=:
 
@@ -156,15 +160,15 @@ cause compilation time.
 {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+      url = https://github.com/mjlbach/emacs-overlay/archive/feature/flakes.tar.gz;
     }))
   ];
 }
 #+END_SRC
 
 *** Binary cache
-You will want to use the [[https://nix-community.org/#binary-cache][nix-community binary cache]]. Where the
-overlay's build artefacts are pushed. See [[https://app.cachix.org/cache/nix-community][here]] for installation
+You will want to use my cachix `mjlbach`. Where the
+overlay's build artefacts are pushed. See [[https://app.cachix.org/cache/mjlbach][here]] for installation
 instructions.
 
 *** Install directly from the overlay
@@ -176,16 +180,6 @@ package directly from the overlay. For example, you can install
 #+begin_src shell
   nix-build --expr 'with (import <nixpkgs> { overlays = [ (import ./.) ]; }); emacsGit'
 #+end_src
-
-* Community
-
-** IRC
-=#nixos-emacs= on =freenode=
-
-** Nixpkgs issues
-
-*** Emacs tracking issue
-https://github.com/NixOS/nixpkgs/issues/66303
 
 #  LocalWords:  EXWM NixOS emacsGit
 #  LocalWords:  SRC nixpkgs builtins fetchTarball url
