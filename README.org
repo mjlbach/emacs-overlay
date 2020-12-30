@@ -1,4 +1,6 @@
 * Emacs overlay for Nixpkgs
+This is my personal fork of the nix-community emacs-overlay, which includes bundling of nixpkgs and the use of github actions for all builds.
+
 ** Contents of the overlay
 
 *** Elpa
@@ -133,6 +135,7 @@ You will want to use the [[https://nix-community.org/#binary-cache][nix-communit
 overlay's build artefacts are pushed. See [[https://app.cachix.org/cache/nix-community][here]] for installation
 instructions.
 
+For this fork, also add my binary cache `cachix use mjlbach`
 * Community
 
 ** IRC
