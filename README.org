@@ -1,135 +1,19 @@
 * Emacs overlay for Nixpkgs
-** Contents of the overlay
-
-*** Elpa
-Daily generations of Elpa.
-
-*** Melpa / Melpa stable
-Daily generations of Melpa & Melpa stable attribute sets.
-
-*** EXWM & needed dependencies
-This overlay provides fresh versions of EXWM and dependencies. This is
-updated daily.
-
-*** Emacs from Git and latest (including pre-releases)
-This overlay also provides two versions (latest from git) for Emacs. These
-are updated daily.
-
-These attributes are named =emacsGit= and =emacsUnstable=.
-=emacsGit= is built from the latest =master= branch and =emacsUnstable= is built from the latest tag.
-
-Emacs from git is not guaranteed stable and may break your setup at any
-time, if it breaks you get to keep both pieces.
-
-The =feature/native-comp= branch is also provided under the attribute =emacsGcc=.
-This is to be considered highly experimental.
-
-We also provide two attributes named =emacsGit-nox= and =emacsUnstable-nox=
-if you wish to have Emacs built without X dependencies, as well as the
-experimental pgtk branch which supports Wayland natively.
-
-** Extra library functionality
-This overlay comes with extra functions to generate an Emacs closure
-from various types of dependency declaration. (These are abstractions
-on top of =emacsWithPackages=.)
-
-For example, =emacsWithPackagesFromUsePackage= adds packages which are
-required in a user's config via =use-package= or =leaf=.
-
-#+BEGIN_SRC nix
-  {
-    environment.systemPackages = [
-      (emacsWithPackagesFromUsePackage {
-        # Your Emacs config file. Org mode babel files are also
-        # supported.
-        # NB: Config files cannot contain unicode characters, since
-        #     they're being parsed in nix, which lacks unicode
-        #     support.
-        # config = ./emacs.org;
-        config = ./emacs.el;
-
-        # Package is optional, defaults to pkgs.emacs
-        package = pkgs.emacsGit;
-
-        # By default emacsWithPackagesFromUsePackage will only pull in
-        # packages with `:ensure`, `:ensure t` or `:ensure <package name>`.
-        # Setting `alwaysEnsure` to `true` emulates `use-package-always-ensure`
-        # and pulls in all use-package references not explicitly disabled via
-        # `:ensure nil` or `:disabled`.
-        # Note that this is NOT recommended unless you've actually set
-        # `use-package-always-ensure` to `t` in your config.
-        alwaysEnsure = true;
-
-        # For Org mode babel files, by default only code blocks with
-        # `:tangle yes` are considered. Setting `alwaysTangle` to `true`
-        # will include all code blocks missing the `:tangle` argument,
-        # defaulting it to `yes`.
-        # Note that this is NOT recommended unless you have something like
-        # `#+PROPERTY: header-args:emacs-lisp :tangle yes` in your config,
-        # which defaults `:tangle` to `yes`.
-        alwaysTangle = true;
-
-        # Optionally provide extra packages not in the configuration file.
-        extraEmacsPackages = epkgs: [
-          epkgs.cask
-        ];
-
-        # Optionally override derivations.
-        override = epkgs: epkgs // {
-          weechat = epkgs.melpaPackages.weechat.overrideAttrs(old: {
-            patches = [ ./weechat-el.patch ];
-          });
-        };
-      })
-    ];
-  }
-#+END_SRC
-
-Similarly, =emacsWithPackagesFromPackageRequires= adds packages which
-are declared in a =.el= package file's =Package-Requires= header, which
-can be handy for CI purposes:
-
-#+BEGIN_SRC nix
-...
-let
-  emacsForCI = pkgs.emacsWithPackagesFromPackageRequires {
-    packageElisp = builtins.readFile ./flycheck.el;
-    extraEmacsPackages = epkgs: [
-      epkgs.package-lint
-    ];
-  };
-pkgs.mkShell {
-  buildInputs = [ emacsForCI ];
-}
-#+END_SRC
-
-
-** Usage of the overlay
-*** Latest master each rebuild
-One way, and probably the most convenient way to pull in this overlay is by
-just fetching the tarball of latest master on rebuild.
-
-This has side-effects if packages breaks or things like that you may want
-to be in control of which revision of the overlay you run.
-
-Adding the overlay this way will extend your Emacs packages set to contain
-the latest EXWM and dependencies from their respective master and make the
-package =emacsGit= available. These of course change quite rapidly and will
-cause compilation time.
+This is my personal fork of the nix-community emacs-overlay, which includes bundling of nixpkgs and the use of github actions for all builds. To see the full documenation, go [here](https://github.com/nix-community/emacs-overlay#readme). The main differences in this overlay, are it only builds emacsPgtkGcc for linux, and emacsGcc for macos. To get started, you can add the following to your nixos/home-manager config.
 
 #+BEGIN_SRC nix
 {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
-      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+      url = https://github.com/mjlbach/emacs-overlay/archive/feature/flakes.tar.gz;
     }))
   ];
 }
 #+END_SRC
 
 *** Binary cache
-You will want to use the [[https://nix-community.org/#binary-cache][nix-community binary cache]]. Where the
-overlay's build artefacts are pushed. See [[https://app.cachix.org/cache/nix-community][here]] for installation
+You will want to use my cachix `mjlbach`. Where the
+overlay's build artefacts are pushed. See [[https://app.cachix.org/cache/mjlbach][here]] for installation
 instructions.
 
 *** Install directly from the overlay
@@ -141,16 +25,6 @@ package directly from the overlay. For example, you can install
 #+begin_src shell
   nix-build --expr 'with (import <nixpkgs> { overlays = [ (import ./.) ]; }); emacsGit'
 #+end_src
-
-* Community
-
-** IRC
-=#nixos-emacs= on =freenode=
-
-** Nixpkgs issues
-
-*** Emacs tracking issue
-https://github.com/NixOS/nixpkgs/issues/66303
 
 #  LocalWords:  EXWM NixOS emacsGit
 #  LocalWords:  SRC nixpkgs builtins fetchTarball url
