@@ -44,7 +44,6 @@ let
 
               patches = [
                 ./patches/tramp-detect-wrapped-gvfsd.patch
-                ./patches/clean-env.patch
               ];
               postPatch = old.postPatch + ''
                 substituteInPlace lisp/loadup.el \
@@ -59,29 +58,6 @@ let
           )
         )
 
-        # Stable compat
-        (
-          drv:
-          let
-            # The nativeComp passthru attribute is used a heuristic to check if we're on 20.03 or older
-            isStable = !(pkgs.lib.hasAttr "nativeComp" (drv.passthru or { }));
-            withX = pkgs.lib.elem "--with-xft" drv.configureFlags;
-          in
-          if isStable then drv.overrideAttrs (
-            old: {
-
-              configureFlags = old.configureFlags
-                ++ pkgs.lib.optional withX "--with-cairo";
-
-              buildInputs = old.buildInputs ++ [
-                pkgs.harfbuzz.dev
-                pkgs.jansson
-              ]
-                ++ pkgs.lib.optional withX pkgs.cairo;
-
-            }
-          ) else drv
-        )
       ];
 
   mkPgtkEmacs = namePrefix: jsonFile: (mkGitEmacs namePrefix jsonFile).overrideAttrs (
@@ -107,7 +83,6 @@ let
     old: {
       patches = [
         ./patches/tramp-detect-wrapped-gvfsd-27.patch
-        ./patches/clean-env.patch
       ];
     }
   );
