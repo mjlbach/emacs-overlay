@@ -3,11 +3,11 @@
     "emacs-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1619510022,
-        "narHash": "sha256-Y9LXeGOHKEkXnM7xOqq1GknE3duyyPxmSk+my16uJJc=",
+        "lastModified": 1619576320,
+        "narHash": "sha256-JbNJ0eBnIWtEqiJu5uVUtT7WRzoI1Xnsp63mNC9u8yA=",
         "owner": "emacs-mirror",
         "repo": "emacs",
-        "rev": "a190b4cfd8b6f42a91678ac7292e1cceccd168e7",
+        "rev": "a9fc30e6c2ea67d7a2faa5c218af5bcae9f31246",
         "type": "github"
       },
       "original": {
@@ -149,11 +149,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1619323048,
-        "narHash": "sha256-wiLspuRrtX4JPO2Xpd0ySsaN+g5i5BVfslCfcIcHSrU=",
+        "lastModified": 1619464443,
+        "narHash": "sha256-R7WAb8EnkIJxxaF6GTHUPytjonhB4Zm0iatyWoW169A=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "1fe6ed37fd9beb92afe90671c0c2a662a03463dd",
+        "rev": "8e4fe32876ca15e3d5eb3ecd3ca0b224417f5f17",
         "type": "github"
       },
       "original": {
@@ -166,11 +166,11 @@
     "pre-commit-hooks.nix": {
       "flake": false,
       "locked": {
-        "lastModified": 1619433369,
-        "narHash": "sha256-cgYii9ExMqUO+9WvfTuhf4DsUtrGdCEd8EtGajEsiMU=",
+        "lastModified": 1619530134,
+        "narHash": "sha256-CAideYzHuwM/uajdF0r71WgHaGMzWmKr9DUsFqTuLqI=",
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "caba2a7208abd6a2dae2c8afd8e2a818108b1376",
+        "rev": "8537f4e6cf110f48cf20b8591db4190ae995f08a",
         "type": "github"
       },
       "original": {
