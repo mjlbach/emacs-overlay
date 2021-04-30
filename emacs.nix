@@ -3,7 +3,6 @@
 , xelb
 , emacs-unstable
 , emacs-git
-, emacs-nativecomp
 , emacs-pgtk
 , emacs-pgtk-nativecomp
 }:
@@ -53,7 +52,7 @@ let
               postInstall = old.postInstall + pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
                 ln -snf $out/lib/emacs/28.0.50/native-lisp $out/Applications/Emacs.app/Contents/native-lisp
               '';
-
+              CFLAGS = pkgs.lib.optionalString pkgs.stdenv.isDarwin " -DMAC_OS_X_VERSION_MAX_ALLOWED=110200";
             }
           )
         )
@@ -69,7 +68,7 @@ let
 
   emacsGit = mkGitEmacs "emacs-git" emacs-git;
 
-  emacsGcc = (mkGitEmacs "emacs-gcc" emacs-nativecomp).override {
+  emacsGcc = (mkGitEmacs "emacs-git" emacs-git).override {
     nativeComp = true;
   };
 
