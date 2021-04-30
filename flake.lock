@@ -16,23 +16,6 @@
         "type": "github"
       }
     },
-    "emacs-nativecomp": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1619269279,
-        "narHash": "sha256-SZpI1hLBwjK7JXcVjfE6cEwc1gY4ElW+RsnjYXsNIRI=",
-        "owner": "emacs-mirror",
-        "repo": "emacs",
-        "rev": "fa65c044f2ebe666467166075c1507a8d0e1347f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "emacs-mirror",
-        "ref": "feature/native-comp",
-        "repo": "emacs",
-        "type": "github"
-      }
-    },
     "emacs-pgtk": {
       "flake": false,
       "locked": {
@@ -182,7 +165,6 @@
     "root": {
       "inputs": {
         "emacs-git": "emacs-git",
-        "emacs-nativecomp": "emacs-nativecomp",
         "emacs-pgtk": "emacs-pgtk",
         "emacs-pgtk-nativecomp": "emacs-pgtk-nativecomp",
         "emacs-unstable": "emacs-unstable",

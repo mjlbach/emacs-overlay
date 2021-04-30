@@ -21,20 +21,12 @@
     flake = false;
   };
 
-  inputs.emacs-nativecomp = {
-    type = "github";
-    owner = "emacs-mirror";
-    repo = "emacs";
-    ref = "feature/native-comp";
-    flake = false;
-  };
-
   outputs = { ... }@inputs:
     inputs.flake-utils.lib.eachDefaultSystem
       (system:
         let
           pkgs = inputs.nixpkgs.legacyPackages.${system};
-          emacs-pkgs = with inputs; pkgs.callPackage ./emacs.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
+          emacs-pkgs = with inputs; pkgs.callPackage ./emacs.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-pgtk-nativecomp; };
         in
         {
           packages = emacs-pkgs;
@@ -45,7 +37,7 @@
       overlay = _: prev:
         let
           pkgs = inputs.nixpkgs.legacyPackages.${prev.system};
-          emacs-pkgs = with inputs; pkgs.callPackage ./emacs.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-nativecomp emacs-pgtk-nativecomp; };
+          emacs-pkgs = with inputs; pkgs.callPackage ./emacs.nix { inherit exwm xelb emacs-git emacs-unstable emacs-pgtk emacs-pgtk-nativecomp; };
         in
         {
           inherit (emacs-pkgs) emacsPgtkGcc emacsGcc;
