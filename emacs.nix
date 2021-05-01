@@ -52,7 +52,7 @@ let
               postInstall = old.postInstall + pkgs.lib.optionalString pkgs.stdenv.isDarwin ''
                 ln -snf $out/lib/emacs/28.0.50/native-lisp $out/Applications/Emacs.app/Contents/native-lisp
               '';
-              CFLAGS = old.CFLAGS + pkgs.lib.optionalString pkgs.stdenv.isDarwin " -DMAC_OS_X_VERSION_MAX_ALLOWED=110200";
+              CFLAGS = pkgs.lib.optionalString pkgs.stdenv.isDarwin " -DMAC_OS_X_VERSION_MAX_ALLOWED=110200";
             }
           )
         )
