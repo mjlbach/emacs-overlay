@@ -1198,10 +1198,10 @@
       elpaBuild {
         pname = "emms";
         ename = "emms";
-        version = "7.2";
+        version = "7.3";
         src = fetchurl {
-          url = "https://elpa.gnu.org/packages/emms-7.2.tar";
-          sha256 = "11vqqh9rnzibsfw7wx62rgzl8i8ldpf0hv1sj43nhl5c6dlc8d5z";
+          url = "https://elpa.gnu.org/packages/emms-7.3.tar";
+          sha256 = "1lzjv9cpkzvin3pbw27irji5l7h7205yn688qnfwh43k6iqk6sqn";
         };
         packageRequires = [ cl-lib nadvice seq ];
         meta = {
@@ -1867,10 +1867,10 @@
       elpaBuild {
         pname = "ivy-posframe";
         ename = "ivy-posframe";
-        version = "0.6.0";
+        version = "0.6.1";
         src = fetchurl {
-          url = "https://elpa.gnu.org/packages/ivy-posframe-0.6.0.tar";
-          sha256 = "07dzglrcdl54lkznyphw97xwd9bcwzdcgzkav0vqfk7f5cwh1wkf";
+          url = "https://elpa.gnu.org/packages/ivy-posframe-0.6.1.tar";
+          sha256 = "1nay2sfbwm2fkp3f1y89innd9h6j3q70q9y4yddrwa69cxlj9m23";
         };
         packageRequires = [ emacs ivy posframe ];
         meta = {
@@ -2889,10 +2889,10 @@
       elpaBuild {
         pname = "pyim";
         ename = "pyim";
-        version = "3.7.9";
+        version = "3.8.1";
         src = fetchurl {
-          url = "https://elpa.gnu.org/packages/pyim-3.7.9.tar";
-          sha256 = "00ff1izdwcy53dcwpdn18wwndnw2jsw4bhg8gkqaa60xm468xzkl";
+          url = "https://elpa.gnu.org/packages/pyim-3.8.1.tar";
+          sha256 = "19rsy41l588aijyi81jmqz9icl8r7ifh46yyl2dl99qz5rw00hlp";
         };
         packageRequires = [ async emacs xr ];
         meta = {
@@ -3946,6 +3946,21 @@
         packageRequires = [ emacs ];
         meta = {
           homepage = "https://elpa.gnu.org/packages/valign.html";
+          license = lib.licenses.free;
+        };
+      }) {};
+    vc-hgcmd = callPackage ({ elpaBuild, emacs, fetchurl, lib }:
+      elpaBuild {
+        pname = "vc-hgcmd";
+        ename = "vc-hgcmd";
+        version = "1.14";
+        src = fetchurl {
+          url = "https://elpa.gnu.org/packages/vc-hgcmd-1.14.tar";
+          sha256 = "0pg6fg0znsmky3iwdpxn2sx5bbn72kw83s077000ilawi6zqwc2d";
+        };
+        packageRequires = [ emacs ];
+        meta = {
+          homepage = "https://elpa.gnu.org/packages/vc-hgcmd.html";
           license = lib.licenses.free;
         };
       }) {};
